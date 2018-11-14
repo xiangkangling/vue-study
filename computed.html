@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-computed</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div id="vue-app">
+		<div>message: {{ message }}</div>
+		<div>reverseMessage: {{ reverseMessage }}</div>	
+		<div>reverseMessage: {{ reverseMessage2() }}</div>
+		<div>nowTime: {{ nowTime }}</div>
+		<div>nowTime: {{ nowTime2() }}</div>
+		<div>
+			<span>{{ num1 }}</span> +
+			<span>{{ num2 }}</span> =
+			<span>{{ sum }}</span> // 侦听属性计算
+		</div>
+		<div>
+			<span>{{ num1 }}</span> +
+			<span>{{ num2 }}</span> =
+			<span>{{ calcsum }}</span> // 计算属性计算
+		</div>
+		<div>
+			<button v-on:click="num1+=step">num1加{{ step }}</button>
+			<button @click="num1-=step">num1减{{ step }}</button>
+			<button v-on:click="num2+=step">num2加{{ step }}</button>
+			<button @click="num2-=step">num2减{{ step }}</button>
+		</div>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el: "#vue-app",
+		data: {
+			message: "hello",
+			num1: 1,
+			num2: 2,
+			sum: 3,
+			step: 10,
+		},
+		// 调用方法: 每当触发重新渲染时，调用方法将总会再次执行函数
+		methods: {
+			reverseMessage2: function () {
+				return this.message.split("").reverse().join("");
+			},
+			nowTime2: function () {
+				return Date.now();
+			}
+		},
+		// 计算属性: 基于它们的依赖进行缓存的
+		computed: {
+			reverseMessage: function () {
+				return this.message.split("").reverse().join("");
+			},
+			nowTime: function () {
+				return Date.now();
+			},
+			calcsum: function () {
+				return this.num1 + this.num2;
+			}
+		},
+		// 侦听属性
+		watch: {
+			num1: function (val) {
+				this.sum = val + this.num2;
+			},
+			num2: function (val) {
+				this.sum = val + this.num1;
+			},
+		}
+	});
+</script>
+
+</html>

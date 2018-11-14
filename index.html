@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-study</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+	<link rel="stylesheet" href="app.css">
+</head>
+<body>
+	<div id="vue-app">
+		<div>姓名: {{ name }}</div>
+		<div>年龄: {{ age }}</div>
+		<div><a v-bind:href="src">百度一下</a></div>
+		<!-- v-bind: 的缩写 : -->
+		<div><a :href="src">百度一下</a></div>
+		<div>打招呼: {{ sayHello() }}</div>
+		<button v-on:click="add">加{{ step }}岁</button> <button v-on:click="substract">减{{ step }}岁</button>
+		<!-- v-on: 的缩写 @ -->
+		<button v-on:click="add">加{{ step }}岁</button> <button v-on:click="substract">减{{ step }}岁</button>
+		<div class="mousemovebox" v-on:mousemove="calcXY">
+			<span>{{X}}, {{Y}}</span> - <span v-on:mousemove.stop>stopcalc</span>
+		</div>
+		<div v-html="html"></div>
+	</div>
+</body>
+<script src="app.js"></script>
+</html>

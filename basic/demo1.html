@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>demo1</title>
+	<script src="https://unpkg.com/vue"></script>
+	<style>
+		.pic {
+			height: 400px;
+			background: url(img/bag.png) center no-repeat;
+			background-size: 150px 400px;
+		}
+		.pic.pic2 {
+			background: url(img/bag-burst.png) center no-repeat;
+			background-size: 150px 400px;
+		}
+		.precenceBar {
+			width: 200px;
+			height: 20px;
+			border: 2px solid #000;
+			margin: 30px auto;
+		}
+		.precenceBar div {
+			height: 20px;
+			background-color: red;
+		}
+		.btn {
+			text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div id="vue-app">
+		<!-- img -->
+		<div v-bind:class="[pic, {pic2: !isAlwways}]"></div>
+		<!-- 进度条 -->
+		<div class="precenceBar">
+			<div v-bind:style="{width: width + '%'}"></div>
+		</div>
+		<!-- 按钮 -->
+		<div class="btn">
+			<button v-show="isAlwways" @click="always">一直点</button>
+			<button v-on:click="restart">重新开始</button>
+		</div>
+	</div>
+	<script>
+		new Vue({
+			el: "#vue-app",
+			data: {
+				width: 100,
+				isAlwways: true,
+				pic: "pic",
+			},
+			methods: {
+				always: function () {
+					this.width -= 10;
+					if (this.width == 0) {
+						this.isAlwways = false;
+					}
+				},
+				restart: function () {
+					this.width = 100;
+					this.isAlwways = true;
+				}
+			},
+		});
+	</script>
+</body>
+</html>

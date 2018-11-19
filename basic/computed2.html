@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue-computed</title>
+	<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+</head>
+<body>
+	<div id="vue-app">
+		<button @click="age++">加加</button>
+		<button @click="age2--">减减</button>
+		<div>age: {{jia()}}</div>
+		<div>age: {{jian()}}</div>
+	</div>
+</body>
+<script>
+	var vm = new Vue({
+		el: "#vue-app",
+		data: {
+			age: 1,
+			age2: 2,
+		},
+		methods: {
+			jia: function () {
+				// this.age++;
+				console.log("加");
+				return this.age + 6;
+				
+			},
+			jian: function () {
+				// this.age--;
+				console.log("减");
+				return this.age2 + 6;
+				
+			}
+		},
+		computed: {
+			// jia: function () {
+			// 	// this.age++;
+			// 	console.log("加");
+			// 	return this.age + 6;
+				
+			// },
+			// jian: function () {
+			// 	// this.age--;
+			// 	console.log("减");
+			// 	return this.age2 + 6;
+				
+			// }
+		},
+	});
+</script>
+</html>

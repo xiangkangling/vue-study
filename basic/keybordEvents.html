@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>键盘修饰符和数据的双向绑定</title>
+        <script src="https://unpkg.com/vue"></script>
+    </head>
+    <body>
+        <div id="vue-app">
+            <div>
+            	name:
+            	<input type="text" v-on:keyup.enter="inputname" v-model="name">
+            	<span>{{name}}</span>
+            </div>
+            <div>
+            	age:
+            	<input type="text" v-on:keyup.alt.enter="inputage" v-model="age">
+            	<span>{{age}}</span>
+            </div>
+        </div>
+    </body>
+
+    <script>
+    	var vm = new Vue({
+    		el: "#vue-app",
+    		data: {
+    			name: "",
+    			age: "",
+    		},
+    		methods: {
+    			inputname: function () {
+    				console.log("正在输入名字");
+    			},
+    			inputage: function () {
+    				console.log("正在输入年龄");
+    			},
+
+    		}
+    	});
+    </script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>class v-if v-show</title>
+    <script src="https://unpkg.com/vue"></script>
+    <style>
+    	.box {
+    		margin-top: 30px;
+    	}
+    	.box span {
+    		display: block;
+    		width: 50px;
+    		height: 50px;
+    		line-height: 50px;
+    		background-color: red;
+    		text-align: center;
+    		overflow: hidden;
+    	}
+    	.box span.changecolor {
+    		background-color: yellow;
+    	}
+    	.box span.changelength {
+    		width: 100px;
+    	}
+
+    </style>
+</head>
+<body>
+	<div id="vue-app">
+		<div>
+			<button v-on:click="changecolor = !changecolor">change Color</button>
+			<button @click="changelength = !changelength">change width</button>
+		</div>
+		<div class="box">
+			<!-- <span v-bind:class="{changecolor: changecolor, changelength: changelength}">magic box</span> -->
+			<span v-bind:class="classobj">magic box</span>
+		</div>
+		<!-- v-if -->
+		<div v-if="changecolor">hello</div>
+		<div v-show="changelength">hi</div>
+		<!-- v-for -->
+		<ul>
+			<li v-for="(character,index) in characters">{{index + 1}} - {{character}}</li>
+		</ul>
+		<div v-for="info in infos">
+			<p>name: {{info.name}}</p>
+			<p>age: {{info.age}}</p>
+		</div>
+		<h3>template</h3>
+		<template v-for="info in infos">
+			<!-- <p>name: {{info.name}}</p>
+			<p>age: {{info.age}}</p> -->
+			<p v-for="(val,key) in info">{{key}} : {{val}}</p>
+		</template>
+
+	</div>
+	<script>
+		console.log(111);
+		new Vue({
+			el: "#vue-app",
+			data: {
+				changecolor: false,
+				changelength: false,
+				characters: ["Maria","Luffy","Jack","Rose"],
+				infos: [
+					{name: "张三", age: 18},
+					{name: "张四", age: 20},
+					{name: "阿菊", age: 25},
+					{name: "啊呜", age: 30},
+				]
+			},
+			methods: {
+
+			},
+			computed: {
+				classobj: function () {
+					return {
+						changecolor: this.changecolor,
+						changelength: this.changelength,
+					}
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,18 +1,16 @@
 {
-  "name": "todo-demo",
+  "name": "flex-demo",
   "version": "1.0.0",
   "description": "A Vue.js project",
   "author": "xiangkangling <328870462@qq.com>",
   "private": true,
   "scripts": {
-    "dev": "webpack-dev-server --open --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --inline --progress --config --open build/webpack.dev.conf.js",
     "start": "npm run dev",
     "build": "node build/build.js"
   },
   "dependencies": {
-    "element-ui": "^2.4.10",
-    "vue": "^2.5.2",
-    "vue-router": "^3.0.1"
+    "vue": "^2.5.2"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

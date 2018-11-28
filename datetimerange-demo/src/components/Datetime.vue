@@ -27,7 +27,8 @@
 		    	  start-placeholder="开始日期"
 		    	  end-placeholder="结束日期"
 		    	  :picker-options="pickerOptions"
-		    	  @change="getDiyRange()">
+		    	  @change="getDiyRange()"
+		    	  @focus="initRange()">
 		    	</el-date-picker>
 		  </div>
 		</div>
@@ -46,11 +47,8 @@ export default {
   		step: 3,
   		rangeS: nowtime,
   		rangeE: endtime,
-  		pickerOptions: {
-  			disabledDate (time) {
-  				return (time.getTime() > Date.now()) || (time.getTime() < Date.now() - 86400 *1000*90);
-  			},
-  		},
+			minDate: null,
+			maxDate: null,
   	}
 	},
 	methods: {
@@ -64,12 +62,36 @@ export default {
 			this.step = step;
 				// debugger
 				var sTime = new Date().getTime();
-				this.rangeE = new Date(sTime + 86400 *1000*step);
+				this.rangeE = new Date(sTime + 86400*1000*step);
 		},
 		getDiyRange () {
 			this.step = "diy";
 			this.rangeS = this.timerange[0];
 			this.rangeE = this.timerange[1];
+		},
+		initRange () {
+			this.minDate = null;
+			this.maxDate = null;
+		}
+	},
+	computed: {
+		pickerOptions() {
+			var _this = this;
+			return {
+				disabledDate (time) {
+					if (_this.minDate == null && _this.maxDate == null) {
+						return (time.getTime() > Date.now()) || (time.getTime() < Date.now() - 86400*1000*90);
+					}
+					else if (_this.minDate != null && _this.maxDate == null) {
+						return (time.getTime() < _this.minDate.getTime() - 86400*1000*30 || time.getTime() > Date.now()) || (time.getTime() > _this.minDate.getTime() + 86400*1000*30 || time.getTime() < Date.now() - 86400*1000*90);
+					}
+					
+				},
+				onPick(range) {
+					_this.minDate = range.minDate;
+					_this.maxDate = range.maxDate;
+				}
+			}
 		},
 	}
 }

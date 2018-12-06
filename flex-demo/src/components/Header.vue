@@ -1,6 +1,6 @@
 <template>
   <header class="header">
-  	<h1>{{title1}}</h1>
+  	<h1 @click="changeTitle">{{title1}}</h1>
     <h2>{{title}}</h2>
   </header>
 </template>
@@ -15,7 +15,15 @@ export default {
   },
   data () {
     return {
-      title1: 'this is Title'
+      title1: 'this is Title',
+    }
+  },
+  methods: {
+    changeTitle () {
+      this.$emit("changeTitled", {
+        msg: "子向父传递的信息",
+        
+      });
     }
   }
 }

@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <!-- <HelloWorld/> -->
-    <my-header :title="title"></my-header>
+    <!-- <my-header :title="title"></my-header>
     <my-main v-bind:roles="roles" v-bind:title="title"></my-main>
     <ul class="main">
         <li v-for="role in roles">
@@ -10,39 +10,38 @@
         </li>
     </ul>
     <h1>{{title}}</h1>
-    <my-footer :title="title"></my-footer>
-    
+    <my-footer :title="title"></my-footer> -->
+    <home></home>
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld'
-import myHeader from '@/components/Header'
-import myFooter from '@/components/Footer'
-import myMain from '@/components/Main'
+// import myHeader from '@/components/Header'
+// import myFooter from '@/components/Footer'
+// import myMain from '@/components/Main'
+import Home from '@/components/Home'
 export default {
   name: 'App',
   components: {
     // HelloWorld
-    myHeader,
-    myFooter,
-    myMain,
+    Home,
   },
-  data() {
-    return {
-      roles: [
-        {name: "Ruffy", job: "海盗", isshow: false},
-        {name: "Jack", job: "前端", isshow: false},
-        {name: "Rose", job: "全栈", isshow: false},
-        {name: "Lisa", job: "PHP", isshow: false},
-        {name: "Robot", job: ".Net", isshow: false},
-        {name: "Sandy", job: "Node", isshow: false},
-        {name: "Cindy", job: "后台", isshow: false},
-        {name: "Cc", job: "UI", isshow: false},
-      ],
-      title: "origin Title"
-    }
-  }
+  // data() {
+  //   return {
+  //     roles: [
+  //       {name: "Ruffy", job: "海盗", isshow: false},
+  //       {name: "Jack", job: "前端", isshow: false},
+  //       {name: "Rose", job: "全栈", isshow: false},
+  //       {name: "Lisa", job: "PHP", isshow: false},
+  //       {name: "Robot", job: ".Net", isshow: false},
+  //       {name: "Sandy", job: "Node", isshow: false},
+  //       {name: "Cindy", job: "后台", isshow: false},
+  //       {name: "Cc", job: "UI", isshow: false},
+  //     ],
+  //     title: "origin Title"
+  //   }
+  // }
 }
 </script>
 
@@ -55,11 +54,11 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }*/
-* {
+/** {
   margin: 0;
   padding: 0;
 }
 .main {
   text-indent: 90px;
-}
+}*/
 </style>

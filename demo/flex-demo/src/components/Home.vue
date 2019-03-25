@@ -47,7 +47,26 @@ export default {
     updateTitle ($event) {
       this.title = $event;
     }
+  },
+  beforeCreate () {
+    alert("vue实例创建前，可在此函数中做加载动画操作")
+  },
+  created () {
+    alert("vue实例创建完成，但DOM还未渲染，可在此函数中做加载动画的结束操作")
+  },
+  beforeMount () {
+    alert("渲染模板，页面仍未显示，但虚拟DOM已经配置")
+  },
+  mounted () {
+    alert("次函数结束，页面显示出来，可在此函数中获取后台数据，展示页面")
+  },
+  beforeUpdate () {
+    alert("更新前，页面仍未更新，但虚拟DOM已经配置")
+  },
+  updated () {
+    alert("更新之后，此函数结束后页面显示出来")
   }
+
 }
 </script>
 
